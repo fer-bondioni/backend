@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router(); //a q rutas ingresa el usuario y bajo q verbo
 const service = require("./../models/personas");
-
+const { validateCreate } = require("./../middlewares/personas");
 //prolijo acciones y funciones por otro lado
 
 const all = (req, res) =>
@@ -52,6 +52,6 @@ const modify = (req, res) =>
 
 router.get("/all", all);
 router.get("/single/:id", single);
-router.post("/create", create);
+router.post("/create", validateCreate, create);
 router.put("/modify/:id", modify);
 module.exports = router;

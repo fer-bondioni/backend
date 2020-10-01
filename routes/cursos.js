@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const service = require("./../models/cursos");
+const { validateCreate } = require("./../middlewares/cursos");
 
 const all = (req, res) =>
   service
@@ -28,7 +29,7 @@ const modify = (req, res) =>
 
 router.get("/all", all);
 router.get("/single/:id", single);
-router.post("/create", create);
+router.post("/create", validateCreate, create);
 router.put("/modify/:id", modify);
 
 module.exports = router;

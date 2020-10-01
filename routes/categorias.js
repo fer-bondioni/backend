@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const service = require("./../models/categorias");
+const { validateCreate } = require("./../middlewares/categorias");
 
 const all = (req, res) =>
   service
@@ -22,6 +23,6 @@ const create = (req, res) =>
 
 router.get("/all", all);
 router.put("/modify/:id", modify);
-router.post("/create", create);
+router.post("/create", validateCreate, create);
 
 module.exports = router;
