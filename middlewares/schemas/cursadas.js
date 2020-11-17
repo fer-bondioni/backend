@@ -1,5 +1,5 @@
 const Joi = require("@hapi/joi");
-const { schema } = require("../../utils/bd");
+// const { schema } = require("../../utils/bd");
 const schemaId = Joi.number().integer().positive().required();
 
 const schemas = {

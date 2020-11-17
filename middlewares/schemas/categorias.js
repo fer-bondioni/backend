@@ -1,5 +1,5 @@
 const Joi = require("@hapi/joi");
-const { schema } = require("../../utils/bd");
+// const { schema } = require("../../utils/bd");
 // const schemaId = Joi.number().integer().positive().required();
 
 const messageNombre = {
@@ -12,6 +12,14 @@ const schemas = {
   create: Joi.object().keys({
     nombre: Joi.string().min(2).max(30).required().messages(messageNombre),
   }),
-};
 
+  modify: Joi.object().keys({
+    id: Joi.number().integer().positive().required(),
+    nombre: Joi.string()
+      .min(2)
+      .max(30)
+      .required()
+      .messages({ message: "El campo nombre es obligatorio" }),
+  }),
+};
 module.exports = { schemas };

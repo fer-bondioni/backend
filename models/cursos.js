@@ -1,13 +1,15 @@
 const bd = require("./../utils/bd");
-const categorias = require("./categorias");
 
-const getAll = () => bd("cursos").select("*");
+const getAll = () => 
+bd("cursos")
+.join("categorias", "cursos.idCategoria", "categorias.id")
+.select("cursos.nombre", "categorias.nombre as nombreCategoria");
 
 const getSingle = (id) =>
   bd("cursos")
     .join("categorias", "cursos.idCategoria", "categorias.id")
     .where("cursos.id", id)
-    .select("cursos.nombre", "categorias.nombre");
+    .select("cursos.nombre", "categorias.nombre as nombreCategoria");
 
 const modify = (obj, id) => bd("cursos").where({ id }).update(obj);
 

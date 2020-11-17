@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const service = require("./../models/categorias");
-const { validateCreate } = require("./../middlewares/categorias");
+const {
+  validateCreate,
+  validateModify,
+} = require("./../middlewares/categorias");
 
 const all = (req, res) =>
   service
@@ -22,7 +25,7 @@ const create = (req, res) =>
     .catch((e) => res.status(500).json(e));
 
 router.get("/all", all);
-router.put("/modify/:id", modify);
+router.put("/modify/:id", validateModify, modify);
 router.post("/create", validateCreate, create);
 
 module.exports = router;
